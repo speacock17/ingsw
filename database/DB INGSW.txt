@@ -20,7 +20,7 @@ Nome varchar(15) NOT NULL,
 Cognome varchar(20) NOT NULL,
 Username varchar(20) NOT NULL,
 Pass varchar(15) NOT NULL,
-Ruolo UnitaDiMisura NOT NULL,
+Ruolo tipoUtente NOT NULL,
 CONSTRAINT pk_user PRIMARY KEY(Username),
 CONSTRAINT len_pass CHECK(Length(Pass)>=6)
 );
