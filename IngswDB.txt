@@ -1,0 +1,212 @@
+--Tipo utente
+Create type tipoUtente as enum
+('Admin', 'Supervisor', 'AddSala', 'AddCucina');
+
+--Unità di misura
+Create type UnitaDiMisura as enum
+('Litro', 'Chilo', 'Pezzo');
+
+
+--Addizione o sottrazione
+Create type TipoVariazione as enum
+('Aggiunta', 'Rimozione');
+
+--CREAZIONE TABELLE
+
+
+--Creazione tabella utente
+Create table Utente(
+Nome varchar(50) NOT NULL,
+Cognome varchar(50) NOT NULL,
+Username varchar(50) NOT NULL,
+Pass varchar(50) NOT NULL,
+Ruolo tipoUtente NOT NULL,
+PrimoAccesso bool DEFAULT false,
+CONSTRAINT pk_user PRIMARY KEY(Username),
+CONSTRAINT len_pass CHECK(Length(Pass)>=6)
+);
+
+--Creazione tabella dispensa
+Create table Dispensa(
+Nome varchar(50) NOT NULL,
+Descrizione varchar(500) NOT NULL,
+CostoAcquisto float NOT NULL,
+UdM UnitaDiMisura NOT NULL,
+Quantita float NOT NULL,
+SogliaCritica float NOT NULL,
+CONSTRAINT pk_disp PRIMARY KEY(Nome)
+);
+
+--Creazione tabella avvisi
+Create table Avviso(
+IdAvviso integer NOT NULL,
+Oggetto varchar(50) NOT NULL,
+Testo varchar(500) NOT NULL,
+DataCreazione date NOT NULL default current_date,
+CONSTRAINT pk_avviso PRIMARY KEY (IdAvviso)
+);
+
+--Creazione tabella mittente (utente)
+Create table MittenteU(
+Mittente varchar(50) NOT NULL,
+IdAvviso integer NOT NULL,
+CONSTRAINT fk_mitt FOREIGN KEY (Mittente) 
+	REFERENCES Utente(Username)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE,
+CONSTRAINT fk_idavv FOREIGN KEY (IdAvviso) 
+	REFERENCES Avviso(IdAvviso)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE,
+CONSTRAINT unique_comboU UNIQUE (Mittente, IdAvviso)
+);
+
+--Creazione tabella mittente (dispensa)
+--Gestione inserimento in questa tabella delegato a GG in Java
+Create table MittenteD(
+Mittente varchar(50) NOT NULL,
+IdAvviso integer NOT NULL,
+CONSTRAINT fk_mittD FOREIGN KEY (Mittente) 
+	REFERENCES Dispensa(Nome)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE,
+CONSTRAINT fk_idavv FOREIGN KEY (IdAvviso) 
+	REFERENCES Avviso(IdAvviso)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE,
+CONSTRAINT unique_comboD UNIQUE (Mittente, IdAvviso)
+);
+
+--Creazione tabella bacheca
+Create table Bacheca(
+Visualizzato boolean NOT NULL,
+Nascosto boolean NOT NULL,
+IdAvviso integer NOT NULL,
+Destinatario varchar(50) NOT NULL,
+CONSTRAINT fk_idavvBach FOREIGN KEY (IdAvviso) 
+	REFERENCES Avviso(IdAvviso)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE,
+CONSTRAINT fk_dest FOREIGN KEY (Destinatario)
+	REFERENCES Utente(Username)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
+);
+
+--Creazione tabella categoria
+Create table Categoria(
+Nome varchar(50) NOT NULL,
+PostoMenu integer DEFAULT NULL,
+CONSTRAINT pk_cat PRIMARY KEY (Nome)
+);
+
+
+--Creazione tabella Menù
+Create table Menu(
+Nome varchar(100) NOT NULL,
+Descrizione varchar(500) NOT NULL,
+Costo float NOT NULL,
+Allergeni varchar(500) NOT NULL,
+Categoria varchar(50) DEFAULT NULL,
+PostoCategoria integer DEFAULT NULL,
+Constraint pk_nome PRIMARY KEY (Nome),
+CONSTRAINT fk_cat FOREIGN KEY (Categoria)
+	REFERENCES Categoria(Nome)
+	ON UPDATE CASCADE
+	ON DELETE SET NULL
+);
+
+--Creazione tabella Ingredienti
+Create table Ingredienti(
+Quantita float NOT NULL,
+UdM UnitaDiMisura NOT NULL,
+ElementoMenu varchar(100) NOT NULL,
+ElementoDispensa varchar(50) NOT NULL,
+CONSTRAINT fk_menu FOREIGN KEY (ElementoMenu)
+	REFERENCES Menu(Nome)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE,
+CONSTRAINT fk_disp FOREIGN KEY (ElementoDispensa)
+	REFERENCES Dispensa(Nome)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
+);
+
+--Creazione tabella lingua straniera
+Create table LinguaStraniera(
+Lingua varchar(50) NOT NULL,
+NomeProdotto varchar(100) NOT NULL,
+DescrizioneProdotto varchar(500) NOT NULL,
+Allergeni varchar(500) NOT NULL,
+ElementoMenu varchar(100) NOT NULL,
+CONSTRAINT fk_lingua FOREIGN KEY (ElementoMenu)
+	REFERENCES Menu(Nome)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
+);
+
+--Creazione tabella Ordine
+Create table Ordine(
+IdOrdine integer NOT NULL,
+NumeroTavolo integer NOT NULL,
+Quantita integer NOT NULL,
+Prodotto varchar(100) NOT NULL,
+CONSTRAINT pk_ordine PRIMARY KEY (IdOrdine),
+CONSTRAINT fk_prod FOREIGN KEY (Prodotto)
+	REFERENCES Menu(Nome)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
+);
+
+--Variazioni negli ordini
+Create table Variazioni(
+IdOrdine integer NOT NULL,
+ProdDispensa varchar(50) NOT NULL,
+TipoVar TipoVariazione NOT NULL,
+CONSTRAINT fk_ord FOREIGN KEY (IdOrdine)
+	REFERENCES Ordine(IdOrdine)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE,
+CONSTRAINT fk_agg FOREIGN KEY (ProdDispensa)
+	REFERENCES Dispensa(Nome)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
+);
+
+--Cast per le enumeration
+CREATE CAST (varchar AS tipoUtente) WITH INOUT AS IMPLICIT;
+CREATE CAST (varchar AS UnitaDiMisura) WITH INOUT AS IMPLICIT;
+CREATE CAST (varchar AS TipoVariazione) WITH INOUT AS IMPLICIT;
+
+--Sequenza per i codici
+
+-- codice avviso
+Create sequence codAvviso
+start 1
+increment 1
+owned by Avviso.IdAvviso;
+
+-- codice ordine
+Create sequence codOrdine
+start 1
+increment 1
+owned by Ordine.IdOrdine;
+
+--Viste
+-- bacheca estesa degli avvisi from utenti
+create view BachecaEstesaU as 
+(
+	select a.IdAvviso, a.oggetto, a.testo, a.DataCreazione, m.Mittente, c.Visualizzato, c.Nascosto, c.Destinatario
+	from Avviso a, MittenteU m, Bacheca c
+	where a.IdAvviso = m.IdAvviso 
+		and m.IdAvviso = c.IdAvviso
+);
+
+-- bacheca estesa degli avvisi from dispensa
+create view BachecaEstesaD as 
+(
+	select a.IdAvviso, a.oggetto, a.testo, a.DataCreazione, m.Mittente, c.Visualizzato, c.Nascosto, c.Destinatario
+	from Avviso a, MittenteD m, Bacheca c
+	where a.IdAvviso = m.IdAvviso 
+		and m.IdAvviso = c.IdAvviso
+);
