@@ -1,0 +1,24 @@
+@Controller		-- serve per abilitare le 'funzioni' del controller
+			--- le 'funzioni' del controller sono attivate dalle ANNOTAZIONI '@<anntazione>'
+
+@GetMapping		-- mappa il metodo da eseguire su richiesta GET
+			--- se il tipo restituito è un Class Object, allora esso verrà automaticamente convertito in un json
+			---- il json verrà restituito tramite http			
+
+@PostMapping		--- POST : concettualmente crea una entità // usato anche per mandare valori che il server elabora
+@PutMapping			--- PUT : concettualmente modifica interamente un entità in tutti i suoi campi
+@PatchMapping		--- PATCH : concettualmente modifica solo parzialmente un entità
+
+@RequestParam	-- mappa, secondo un nome da rispettare nelle richieste, un certo parametro di un metodo mappato.
+
+@RequestBody	-- converte il contenuto del body di una richiesta POST o PUT in un adatto Class Object di Java. (saranno classi Data Trasfer Object [DTO])
+
+@PathVariable	-- mappa, secondo un nome da rispettare (inserito tra graffe dopo lo slash '/'), un certo parametro per qualsiasi richiesta.
+			--- Difatti nel percorso del @RequestParam sarà presente la notazione '/{nomeParametro}' a cui poi corrisponderà
+			---- nel metodo della funzione java, un parametro '@PathVariable (value = 'nomeParametro') tipoParametro nomeParametro'
+
+ResponseEntity 	-- classe che rappresenta l'INTERA RISPOSTA HTTP: Status Code, Header e Body.
+			--- può essere utilizzato per configurare l'intera risposta HTTP
+			-- essendo un tipo generic, può essere configurato per restituire qualsiasi tipo o Class Object
+			--- in base al tipo che viene configurato, viene poi composto il Body.
+			---- ricorda che un Class Object, come tipo di risposta, viene convertito in json.
