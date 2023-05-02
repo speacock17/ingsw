@@ -1,0 +1,121 @@
+###
+// apri server> Scratches and Consoles> Scratches> generated-requests.http
+
+###
+// INSERISCI CATEGORIA 'SECONDI' (IN ORDINE AUTOMATICO)
+###
+POST http://localhost:8080/controller/categoria/registra/inOrder
+Content-Type: application/json
+
+{"nome": "Secondi"}
+
+
+###
+// INSERISCI CATEGORIA CON UN POSTO MENU A SCELTA
+###
+POST http://localhost:8080/controller/categoria/registra/generico
+Content-Type: application/json
+
+{"nome": "Primi", "postoMenu": "3"}
+
+
+###
+// FALLISCI INSERIMENTO CATEGORIA GIA ESISTENTE				:Categoria gia esistente
+###
+POST http://localhost:8080/controller/categoria/registra/inOrder
+Content-Type: application/json
+
+{"nome": "Primi"}
+
+
+###
+// RECUPERA TUTTE LE CATEGORIE
+###
+GET http://localhost:8080/controller/categoria/recupera/tutteCategorie
+
+
+###
+// RECUPERA CATEGORIA 'SECONDI'
+###
+GET http://localhost:8080/controller/categoria/recupera/categoria
+Content-Type: application/json
+
+{"nome": "Secondi"}
+
+
+###
+// FALLISCI RECUPERO CATEGORIA
+###
+GET http://localhost:8080/controller/categoria/recupera/categoria
+Content-Type: application/json
+
+{"nome": "Dessert"}
+
+
+###
+// MODIFICA NOME CATEGORIA
+###
+PATCH http://localhost:8080/controller/categoria/update/nome
+Content-Type: application/json
+
+{"nome": "Primi", "newName": "Antipasti"}
+
+
+###
+// FALLISCI MODIFICA NOME CATEGORIA						:Categoria non trovata
+###
+PATCH http://localhost:8080/controller/categoria/update/nome
+Content-Type: application/json
+
+{"nome": "Primi", "newName": "Antipasti"}
+
+
+###
+// FALLISCI MODIFICA NOME CATEGORIA						:Categoria gia esistente
+###
+PATCH http://localhost:8080/controller/categoria/update/nome
+Content-Type: application/json
+
+{"nome": "Antipasti", "newName": "Antipasti"}
+
+
+###
+// MODIFICA POSTO MENU
+###
+PATCH http://localhost:8080/controller/categoria/update/postoMenu
+Content-Type: application/json
+
+{"nome": "Antipasti", "postoMenu": "0"}
+
+
+###
+// FALLISCI MODIFICA POSTO MENU						:Categoria non trovata
+###
+PATCH http://localhost:8080/controller/categoria/update/postoMenu
+Content-Type: application/json
+
+{"nome": "Primi", "postoMenu": "0"}
+
+
+###
+// ELIMINA CATEGORIA 'SECONDI'
+###
+DELETE http://localhost:8080/controller/categoria/delete/categoria
+Content-Type: application/json
+
+{"nome": "Secondi"}
+
+
+###
+// FALLISCI ELIMINAZIONE CATEGORIA 'SECONDI'				:Categoria non trovata
+###
+DELETE http://localhost:8080/controller/categoria/delete/categoria
+Content-Type: application/json
+
+{"nome": "Secondi"}
+
+
+###
+// ELIMINA TUTTE LE CATEGORIE
+###
+DELETE http://localhost:8080/controller/categoria/delete/tutteCategorie

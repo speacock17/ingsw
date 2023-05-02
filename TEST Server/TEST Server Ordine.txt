@@ -1,0 +1,142 @@
+###
+// apri server> Scratches and Consoles> Scratches> generated-requests.http
+
+###
+// INSERISCI UN ELEMENTO NEL MENU NO CATEGORIA
+###
+POST http://localhost:8080/controller/menu/registra
+Content-Type: application/json
+
+{
+  "nome": "Diavola",
+  "descrizione": "Pomodoro, mozzarella, salame piccante, basilico, olio Evo",
+  "costo": "5.5",
+  "allergeni": "latticini, glutine"
+}
+
+
+###
+// INSERISCI ELEM DISPENSA			'OLIO EVO'
+###
+POST http://localhost:8080/controller/dispensa/registra
+Content-Type: application/json
+
+{
+  "nome": "Olio EVO",
+  "descrizione": "Olio extravergine d'oliva",
+  "costoAcq": "12.00",
+  "unitaDiMisura": "Litro",
+  "quantita": "500",
+  "sogliaCritica": "10"
+}
+
+
+###		
+// INSERISCI INGREDIENTE				'OLIO EVO' A 'DIAVOLA'
+###
+POST http://localhost:8080/controller/ingredienti/registra
+Content-Type: application/json
+
+{
+  "quantita": "0.02",
+  "elementoMenu": "Diavola",
+  "elementoDispensa": "Olio EVO"
+}
+
+
+###
+// INSERISCI ELEM DISPENSA			'POMODORO'
+###
+POST http://localhost:8080/controller/dispensa/registra
+Content-Type: application/json
+
+{
+  "nome": "Pomodoro",
+  "descrizione": "Pomodori perlati",
+  "costoAcq": "5.00",
+  "unitaDiMisura": "Chilo",
+  "quantita": "0.2",
+  "sogliaCritica": "0.2"
+}
+
+
+###
+// INSERISCI INGREDIENTE		'POMODORO' A 'DIAVOLA'
+###
+POST http://localhost:8080/controller/ingredienti/registra
+Content-Type: application/json
+
+{
+  "quantita": "0.1",
+  "elementoMenu": "Diavola",
+  "elementoDispensa": "Pomodoro"
+}
+
+
+###
+// REGISTRA ORDINE 'DIAVOLA'
+###
+POST http://localhost:8080/controller/ordine/registra
+Content-Type: application/json
+
+{"numeroTavolo": "7", "elementoMenu": "Diavola"}
+
+
+###
+// STORNA ORDINE
+###
+DELETE http://localhost:8080/controller/ordine/stornaOrdine?idOrdine=2
+
+
+###
+// RECUPERA TUTTI GLI ORDINI
+###
+GET http://localhost:8080/controller/ordine/recupera/tuttiOrdini
+
+
+###
+// RECUPERA GLI ORDINI DI UN TAVOLO
+###
+GET http://localhost:8080/controller/ordine/recupera/ordiniTavolo?numTavolo=1
+
+
+###
+// RECUPERA UN ORDINE IN BASE ALL' ID
+###
+GET http://localhost:8080/controller/ordine/recupera/ordineById?idOrdine=2
+
+
+###
+// MODIFICA IL NUMERO DEL TAVOLO IN BASE ALL'ID DELL' ORDINE
+###
+PATCH http://localhost:8080/controller/ordine/update/numeroTavolo?idOrdine=2&numTavolo=5
+
+
+###
+// ELIMINA ORDINE IN BASE ALL'ID ORDINE					:Ordine non trovato
+###
+DELETE http://localhost:8080/controller/ordine/delete/ordineById?idOrdine=3
+
+
+###
+// ELIMINA ORDINE IN BASE ALL'ID ORDINE
+###
+DELETE http://localhost:8080/controller/ordine/delete/ordineById?idOrdine=3
+
+
+###	
+// ELIMINA ORDINE IN BASE AL NUMERO TAVOLO				:Tavolo non trovato
+###
+DELETE http://localhost:8080/controller/ordine/delete/ordiniByNumTavolo?numTavolo=4
+
+
+###
+// ELIMINA ORDINE IN BASE AL NUMERO TAVOLO
+###
+DELETE http://localhost:8080/controller/ordine/delete/ordiniByNumTavolo?numTavolo=5
+
+
+###
+// ELIMINA TUTTI GLI ORDINI
+###
+DELETE http://localhost:8080/controller/ordine/delete/tuttiOrdini
