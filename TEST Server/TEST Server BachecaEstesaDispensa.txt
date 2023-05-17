@@ -1,0 +1,90 @@
+###
+// apri server> Scratches and Consoles> Scratches> generated-requests.http
+
+
+###
+// AGGIUNGI LO ZUCCHERO
+###
+POST http://localhost:8080/controller/dispensa/registra
+Content-Type: application/json
+
+{
+  "nome": "Zucchero",
+  "descrizione": "zucchero coca",
+  "costoAcq": "1.00",
+  "unitaDiMisura": "Chilo",
+  "quantita": "10",
+  "sogliaCritica": "0.5"
+}
+
+
+###
+// RIDUCI LO ZUCCHERO SOTTO LA SOGLIA CRITICA
+###
+PATCH http://localhost:8080/controller/riduciDispensa/riduciQta
+Content-Type: application/json
+
+{"nome": "Zucchero", "togli": "9.06"}
+
+
+###
+// MOSTRA LA BACHECA ESTESA DEGLI AVVISI GENERATI DALLA DISPENSA
+###
+GET http://localhost:8080/controller/bachecaEstesaD/mostra/tutto
+
+
+###
+// MOSTRA LA BACHECA ESTESA DI TUTTI GLI AVVISI DI ALESSANDRO
+###
+GET http://localhost:8080/controller/bachecaEstesaD/mostra/utente/tutti?username=alerojo
+
+
+###
+// NASCONDI AVVISO DELLO ZUCCHERO
+###
+PATCH http://localhost:8080/controller/bacheca/modifica/nascosto
+Content-Type: application/json
+
+{"username": "alerojo", "idAvviso": "6", "nascosto": "true"}
+
+
+###
+// MOSTRA LA BACHECA ESTESA DEI SOLI AVVISI VISIBILI DI ALESSANDRO		:Non dovrebbe uscire quello dello zucchero
+###
+GET http://localhost:8080/controller/bachecaEstesaD/mostra/utente/visibili?username=alerojo
+
+
+###
+// MOSTRA AVVISI NASCOSTI DI ALESSANDRO
+###
+GET http://localhost:8080/controller/bachecaEstesaD/mostra/utente/nascosti?username=alerojo
+
+
+###
+// RENDI COME VISUALIZZATO L'AVVISO DELLO ZUCCHERO
+###
+PATCH http://localhost:8080/controller/bacheca/modifica/visualizzato
+Content-Type: application/json
+
+{"username": "alerojo", "idAvviso": "6", "visualizzato": "true"}
+
+
+###
+// MOSTRA AVVISI NASCOSTI E VISUALIZZATI DI ALESSANDRO
+###
+GET http://localhost:8080/controller/bachecaEstesaD/mostra/utente/vistiNascosti?username=alerojo
+
+
+###
+// RENDI VISBILE AVVISO DELLO ZUCCHERO
+###
+PATCH http://localhost:8080/controller/bacheca/modifica/nascosto
+Content-Type: application/json
+
+{"username": "alerojo", "idAvviso": "6", "nascosto": "false"}
+
+
+###
+// MOSTRA AVVISI VISIBILI E VISUALIZZATI DI ALESSANDRO
+###
+GET http://localhost:8080/controller/bachecaEstesaD/mostra/utente/visti?username=alerojo

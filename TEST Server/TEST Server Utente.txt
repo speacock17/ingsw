@@ -1,0 +1,94 @@
+###
+// apri server> Scratches and Consoles> Scratches> generated-requests.http
+
+###
+// INSERISCI LUCIO
+###
+POST http://localhost:8080/controller/utente/registra?ruolo=AddSala
+Content-Type: application/json
+
+{"nome": "Lucio", "cognome": "Cappello", "username": "luciocaps", "password": "eroina"}
+
+
+###
+// RECUPERA LUCIO
+###
+GET http://localhost:8080/controller/utente/recupera/user?username=luciocaps
+
+
+###
+// LUCIO FA LOGIN
+###
+GET http://localhost:8080/controller/utente/login
+Content-Type: application/json
+
+{"username": "luciocaps", "password": "eroina"}
+
+
+###
+// MODIFICA NOME IN TARLO
+###
+PATCH http://localhost:8080/controller/utente/update/nome
+Content-Type: application/json
+
+{"username": "luciocaps", "nome": "Tarlo"}
+
+
+###
+// MODIFICA COGNOME IN RUSSO
+###
+PATCH http://localhost:8080/controller/utente/update/cognome
+Content-Type: application/json
+
+{"username": "luciocaps", "cognome": "Russo"}
+
+
+###
+// MODIFICA USERNAME
+###
+PATCH http://localhost:8080/controller/utente/update/username
+Content-Type: application/json
+
+{"username": "luciocaps", "newUsername": "tarlorusso"}
+
+
+###
+// MODIFICA PASSWORD
+###
+PATCH http://localhost:8080/controller/utente/update/password
+Content-Type: application/json
+
+{"username": "tarlorusso", "password": "ClubLifeNoBuono"}
+
+
+###
+// MODIFICA RUOLO
+###
+PATCH http://localhost:8080/controller/utente/update/ruolo
+Content-Type: application/json
+
+{"username": "tarlorusso", "ruolo": "AddCucina"}
+
+
+###
+// ELIMINA TARLO
+###
+DELETE http://localhost:8080/controller/utente/delete/user?username=tarlorusso
+
+
+###
+// OTTIENI UTENTI PER RUOLO
+###
+GET http://localhost:8080/controller/utente/recupera/ruolo/Admin
+
+
+###
+// RECUPERA TUTTI GLI UTENTI (ANCHE PASSSWORD) [ruolo per ruolo, invece, se non si vuole mostrare password]
+###
+GET http://localhost:8080/controller/utente/recupera/tuttiUtenti
+
+
+###
+// ELIMINA TUTTI I DATI DEGLI UTENTI
+###
+DELETE http://localhost:8080/controller/utente/delete/tuttiUtenti

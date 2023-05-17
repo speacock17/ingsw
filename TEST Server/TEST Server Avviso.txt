@@ -1,0 +1,33 @@
+###
+// apri server> Scratches and Consoles> Scratches> generated-requests.http
+
+###
+// REGISTRA AVVISO DI LUCIO
+###
+POST http://localhost:8080/controller/avviso/registra
+Content-Type: application/json
+
+{"oggetto": "Prova oggetto Lucio", "testo": "Prova Testo Lucio"}
+
+
+###
+// LEGGI TUTTI GLI AVVISI
+###
+GET http://localhost:8080/controller/avviso/recupera/tuttiAvvisi
+
+
+###
+// LEGGI UN AVVISO ESISTENTE		!!	usa un idAvviso esistente	!!
+###
+GET http://localhost:8080/controller/avviso/recupera/avviso?idAvviso=	<idAvvisoEsistente>
+
+
+###
+// ELIMINA AVVISO				!!	usa un idAvviso esistente	!!
+###
+DELETE http://localhost:8080/controller/avviso/delete/avviso?idAvviso=	<idAvvisoEsistente>
+
+###
+// ELIMINA TUTTI GLI AVVISI
+###
+DELETE http://localhost:8080/controller/avviso/delete/tuttiAvvisi
