@@ -1,0 +1,121 @@
+Per la fase di testing del sistema Ratatouille23, abbiamo scelto di effettuare test dei 4 metodi scelti, utilizzando la strategia Black Box di tipo WECT (Weak Equivalence Class Testing).
+
+	@ scriveAvviso( String username, String oggetto, String testo )
+		Metodo della classe AvvisoUtentiController che registra un nuovo avviso, di cui si tiene traccia di Oggetto e Testo, individuati dai parametri _oggetto_ e _testo_, a cui viene associato il mittente secondo il parametro _username_ e che viene registrato nella bacheca di ogni utente.
+	
+
+	@ updateStatoVisualizzatoBacheca( String username, Integer idAvviso, Boolean visualizzato )
+		Metodo della classe BachecaController che modifica l'attributo 'Visualizzato' di un avviso, individuato dal parametro _idAvviso_ , presente nella bacheca di un utente, individuato dal parametro _username_
+
+
+	@ insertIngredienti( Float quantita, String elementoMenu, String elementoDispensa )
+		Metodo della classe IngredientiController che registra un nuovo ingrediente per un elemento del menu, associando a quest'ultimo un elemento della dispensa, in una determinata quantità, passata come parametro _quantita_, misurata con la stessa Unità di Misura dell'elemento in dispensa da associare, che viene recuperata come attributo 'UdM' di quest'ultimo.
+
+
+	@ login( String username, String password )
+		Metodo della classe LoginController che effettua il login controllando l'esistenza dell'username, inviato come parametro _username_, recuperandone la rispettiva password corretta e confrontandola con quella ricevuta, individuata dal parametro _password_; se le password combaciano viene effettuato un controllo sull' attributo 'PrimoAccesso' di tipo Boolean dell' utente che apre a due scenari differenti:
+	
+	> se l'utente non aveva ancora effettuato il primo accesso, l'attributo 'PrimoAccesso' viene cambiato da 'False' a 'True' e viene restituito un messaggio specifico di primo accesso eseguito;
+	
+	> se l'utente ha già effettuato il primo accesso, l'attributo 'PrimoAccesso' da valore 'True' non subisce alcuna variazione e viene restituito un messaggio di accesso eseguito.
+
+
+
+Vengono riportate di seguito le classi di equivalenza individuate per ciascun metodo e le combinazioni di test effettuate:
+	
+	@ scriveAvviso(String username, String oggetto, String testo)
+
+		username					|				oggetto				|			testo
+CE1:	esistente				VALIDO	|	stringa lunga almeno un carattere	VALIDO	|	stringa lunga almeno un carattere 		VALIDO
+CE2:	non esistente			NON VALIDO	|	null						NON VALIDO	|	null							NON VALIDO
+CE3:	null					NON VALIDO	|	stringa vuota				NON VALIDO	|	stringa vuota					NON VALIDO
+CE4:	stringa vuota			NON VALIDO	|									|
+
+COMBINAZIONI:
+1 - 1 - 1			
+2 - 1 - 1
+1 - 2 - 1
+1 - 1 - 2
+3 - 1 - 1
+1 - 3 - 1
+1 - 1 - 3
+4 - 1 - 1
+
+
+	@ updateStatoVisualizzatoBacheca (String username, Integer idAvviso, Boolean visualizzato )
+
+		username					|				idAvviso				|			visualizzato
+CE1:	esistente				VALIDO	|	esistente					VALIDO	|	true									VALIDO
+CE2:	non esistente			NON VALIDO	|	non esistente				NON VALIDO	|	false									VALIDO
+CE3:	null					NON VALIDO	|	null						NON VALIDO	|	null									NON VALIDO
+CE4:	stringa vuota			NON VALIDO	|	stringa vuota				NON VALIDO	|	invalido (diverso da true e false ma non-Null)		NON VALIDO
+
+COMBINAZIONI:
+1 - 1 - 1			
+1 - 1 - 2			
+1 - 2 - 1
+2 - 1 - 1
+1 - 1 - 3
+1 - 3 - 1
+3 - 1 - 1
+1 - 1 - 4
+1 - 4 - 1
+4 - 1 - 1
+
+
+	@ insertIngredienti( Float quantita, String elementoMenu, String elementoDispensa )
+
+		quantita					|				elementoMenu			|			elementoDispensa
+CE1:	float > 0				VALIDO	|	esistente					VALIDO	|	esistente						VALIDO
+CE2:	float <= 0 				NON VALIDO	|	non esistente				NON VALIDO	|	non esistente					NON VALIDO
+CE3:	null					NON VALIDO	|	null						NON VALIDO	|	null							NON VALIDO
+CE4:	vuoto					NON VALIDO	|	stringa vuota				NON VALIDO	|	stringa vuota					NON VALIDO
+
+COMBINAZIONI:
+1 - 1 - 1
+2 - 1 - 1						
+1 - 2 - 1
+1 - 1 - 2
+3 - 1 - 1
+1 - 3 - 1
+1 - 1 - 3
+4 - 1 - 1
+1 - 4 - 1
+1 - 1 - 4
+
+
+	@ login( String username, String password )
+		username					|				password							
+CE1:	esistente				VALIDO	|	stringa lunga almeno un carattere		VALIDO		
+CE2:	non esistente			NON VALIDO	|	stringa vuota					NON VALIDO		
+CE3:	stringa vuota			NON VALIDO	|	null							NON VALIDO		
+CE4:	null					NON VALIDO	|									
+
+COMBINAZIONI:
+1 - 1
+2 - 1
+1 - 2
+3 - 1
+1 - 3
+4 - 1
+
+Ulteriori test sul percorso interno della funzione valutando i valori dell'attributo 'primoAccesso' di tipo Boolean, 
+presupponendo quindi che i parametri _username_ e _password_ siano VALIDI:
+
+	username			|			password			|		primoAccesso
+CE1:	esistente			|	password corretta				|	true				 		
+CE2:					|	password errata				|	false
+
+COMBINAZIONI:
+1 - 1 - 1
+1 - 1 - 2
+1 - 2 - x
+									
+
+Ciascun test prevede la creazione e l'esecuzione di una richiesta HTTP ai controller che vengono coinvolti ed inoltre sono presenti metodi @BeforeEach in cui vengono creati record nel database necessari ai fini dei test, che vengono successivamente eliminati dai metodi @AfterEach in modo tale da rimuoverne le tracce.
+
+// DA ALLEGARE:
+Screen delle funzioni testate
+Screen delle classi di test
+ 
+
