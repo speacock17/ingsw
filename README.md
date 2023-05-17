@@ -5,3 +5,4 @@ Ultima versione del server:   server_170523
   - factory DAO
   - algoritmo di lettura file xml
   - file xml per ogni model
+  - pattern DAO per la persistenza dei dati
