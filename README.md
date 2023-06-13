@@ -1,7 +1,7 @@
 # ingsw
 CheckPoint:
   -  [Casi d'uso](https://github.com/speacock17/ingsw/tree/main/USE%20CASE)
-  -  [Tabelle Cockburn](https://github.com/speacock17/ingsw/blob/main/CockBurn.zip)
+  -  [Tabelle Cockburn](https://github.com/speacock17/ingsw/tree/main/CockBurn)
   -  [Mockup Figma](https://github.com/speacock17/ingsw/blob/main/Figma%20Progetto.zip)
   -  [Class Diagram di ANALISI](https://github.com/speacock17/ingsw/tree/main/CLASS_DIAGRAM)
   -  [Server Java](https://github.com/speacock17/ingsw/blob/main/server_240523.zip)
