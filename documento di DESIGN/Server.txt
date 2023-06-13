@@ -1,0 +1,8 @@
+Il server è stato progettato con il pattern DAO
+
+Dependency Injection AUTOMATICA tramite annotazione SpringBoot @Repository
+
+Le interfacce Dao, per ridurre l'accoppiamento, presentano metodi slegati dalle istanze delle entità individuate
+
+Le entità vengono istanziae automaticamente da Spring nelle richieste ricevute dal client, attraverso l'annotazione @RequestBody
+Ciascun @RequestBody è legato a dei DTO (Data Transfer Object) che modellano le entità interamente o parzialmente

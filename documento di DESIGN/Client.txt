@@ -1,0 +1,8 @@
+Si usa la classe Activity per le schermate padri
+Si usa la classe Fragment per le schermate figlie
+
+- Lateral navigation 
+un unico padre, navigazione tra scenari che presentano piu storie e tra storie di uno stesso scenario
+navigazione tra scenari senza mai passare da un unico padre
+un primo scenario preselezionato da cui l'utente puo muoversi negli atri tramite TAB selezionabili
+
