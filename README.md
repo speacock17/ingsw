@@ -3,7 +3,7 @@ CheckPoint:
   -  [Casi d'uso](https://github.com/speacock17/ingsw/tree/main/USE%20CASE)
   -  [Tabelle Cockburn](https://github.com/speacock17/ingsw/tree/main/CockBurn)
   -  [Mockup Figma](https://github.com/speacock17/ingsw/blob/main/Figma%20Progetto.zip)
-  -  [Class Diagram di ANALISI](https://github.com/speacock17/ingsw/tree/main/CLASS_DIAGRAM)
+  -  [Class Diagram di ANALISI](https://github.com/speacock17/ingsw/tree/main/ClassDiagramAnalisi)
   -  [Sequence Diagram di ANALISI](https://github.com/speacock17/ingsw/tree/main/SEQUENCE_DIAGRAM_ANALISI)
   -  [Statechart di ANALISI](https://github.com/speacock17/ingsw/tree/main/STATECHART)
   -  [Database](https://github.com/speacock17/ingsw/blob/main/IngswDB.txt)
