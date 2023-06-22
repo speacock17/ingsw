@@ -16,6 +16,7 @@ Ultima versione del server:   server_240523
   - openFoodData service implementato
 
 Server JAR:
-- https://drive.google.com/file/d/15Q-Rx2-WX-UGKUtWzurcbDhFLa7FlMvf/view?usp=sharing
+- Google Drive link: https://drive.google.com/file/d/15Q-Rx2-WX-UGKUtWzurcbDhFLa7FlMvf/view?usp=sharing
+- MediaFire link: https://www.mediafire.com/file/osmfz56r9kgz7x5/server_240523.jar/file
 
 
