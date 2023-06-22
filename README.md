@@ -15,4 +15,7 @@ Ultima versione del server:   server_240523
   - pattern DAO per la persistenza dei dati
   - openFoodData service implementato
 
+Server JAR:
+- https://drive.google.com/file/d/15Q-Rx2-WX-UGKUtWzurcbDhFLa7FlMvf/view?usp=sharing
+
 
