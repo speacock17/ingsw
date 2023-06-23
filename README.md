@@ -24,8 +24,7 @@ Come si avvia il server:
   - tra le operazione possibili su 'stato dell'istanza' bisogna premere "Avvia"
   - sempre selezionando l'istanza, compare in basso l'indirizzo DNS ipv4 pubblico da copiare per l'operazione successiva
   - (qui si trova anche l'indirizzo ipv4 pubblico necessario per le richieste http al server)
-
-  - bisogna accedere alla propria shell e spostarsi nella directory dove si trova la chiave .pem
+  - bisogna accedere al proprio terminale e spostarsi nella directory dove si trova la chiave .pem
   - a questo punto scrivere il comando "ssh -i nomeChiave.pem Ubuntu@DNSipv4pubblico"
   - una volta entrati nella shell della macchina virtuale AWS bisogna andare nella cartella '/home/ubuntu/ingsw'
   - qui eseguire il comando 'java -jar server_230623.jar'
