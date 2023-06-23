@@ -7,7 +7,8 @@ CheckPoint:
   -  [Sequence Diagram di ANALISI](https://github.com/speacock17/ingsw/tree/main/SEQUENCE_DIAGRAM_ANALISI)
   -  [Statechart di ANALISI](https://github.com/speacock17/ingsw/tree/main/STATECHART)
   -  [Database](https://github.com/speacock17/ingsw/blob/main/IngswDB.txt)
-  -  [Server Java](https://github.com/speacock17/ingsw/blob/main/server_240523.zip)
+  -  [Codice Server Java](https://github.com/speacock17/ingsw/blob/main/server_240523.zip)
+  -  [File JAR Server](https://github.com/speacock17/ingsw/blob/main/server_230623.jar)
   -  [Richieste al server](https://github.com/speacock17/ingsw/tree/main/richieste_server)
   -  [Documentazione Testing Server](https://github.com/speacock17/ingsw/blob/main/Documentazione_strategie_test.txt)
 
