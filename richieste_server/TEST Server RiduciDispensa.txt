@@ -1,0 +1,39 @@
+###
+// apri server> Scratches and Consoles> Scratches> generated-requests.http
+
+###
+// INSERISCI IL SALE
+###
+POST http://localhost:8080/controller/dispensa/registra
+Content-Type: application/json
+
+{
+  "nome": "Sale",
+  "descrizione": "sale fino",
+  "costoAcq": "5.00",
+  "unitaDiMisura": "Chilo",
+  "quantita": "100",
+  "sogliaCritica": "10"
+}
+
+
+###
+// RIDUCI LA QUANTITA NON SOTTO LA SOGLIA CRITICA
+###
+PATCH http://localhost:8080/controller/riduciDispensa/riduciQta
+Content-Type: application/json
+
+{"nome": "Sale", "togli": "1"}
+
+
+###
+// RIDUCI LA QUANTITA SOTTO LA SOGLIA CRITICA
+###
+PATCH http://localhost:8080/controller/riduciDispensa/riduciQta
+Content-Type: application/json
+
+{"nome": "Sale", "togli": "91"}
+
+
+
+

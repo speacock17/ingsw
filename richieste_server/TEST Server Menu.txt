@@ -1,0 +1,131 @@
+###
+// apri server> Scratches and Consoles> Scratches> generated-requests.http
+
+###
+// INSERISCI ELEMENTO NO CATEGORIA
+###
+POST http://localhost:8080/controller/menu/registra
+Content-Type: application/json
+
+{"nome": "Margherita",
+ "descrizione": "Pomodoro, mozzarella, basilico, olio Evo",
+ "costo": "4.5",
+ "allergeni": "latticini, glutine"
+}
+
+
+###
+// INSERISCI CATEGORIA 'PIZZE' (IN ORDINE AUTOMATICO)
+###
+POST http://localhost:8080/controller/categoria/registra/inOrder
+Content-Type: application/json
+
+{"nome": "Pizze"}
+
+
+###
+// INSERISCI UN ELEMENTO NEL MENU IN UNA CATEGORIA ESISTENTE: 'PIZZE'
+###
+POST http://localhost:8080/controller/menu/registra
+Content-Type: application/json
+
+{"nome": "Diavola",
+ "descrizione": "Pomodoro, mozzarella, salame piccante, basilico, olio Evo",
+ "costo": "5.5",
+ "allergeni": "latticini, glutine", 
+  "categoria": "Pizze"
+}
+
+
+###
+// RECUPERA LA MARGHERITA
+###
+GET http://localhost:8080/controller/menu/recupera/elemMenu
+Content-Type: application/json
+
+{"nome": "Margherita"}
+
+
+###
+// RECUPERA TUTTO IL MENU
+###
+GET http://localhost:8080/controller/menu/recupera/tuttoMenu
+
+
+###
+// RECUPERA LA CATEGORIA PIZZE
+###
+GET http://localhost:8080/controller/menu/recupera/menuByCategoria
+Content-Type: application/json
+
+{"categoria": "Pizze"}
+
+
+###
+// MODIFICA NOME ELEMENTO MENU
+###
+PATCH http://localhost:8080/controller/menu/update/nome
+Content-Type: application/json
+
+{"nome": "Margherita", "newName": "LaClassica"}
+
+
+###
+// MODIFICA DESCRIZIONE ELEMENTO MENU
+###
+PATCH http://localhost:8080/controller/menu/update/descrizione
+Content-Type: application/json
+
+{"nome": "LaClassica", "descrizione": "pizza con pomodoro e mozzarella"}
+
+
+###
+// MODIFICA IL COSTO
+###
+PATCH http://localhost:8080/controller/menu/update/costo
+Content-Type: application/json
+
+{"nome": "LaClassica", "costo": "4"}
+
+
+###
+// MODIFICA ALLERGENI
+###
+PATCH http://localhost:8080/controller/menu/update/allergeni
+Content-Type: application/json
+
+{"nome": "LaClassica", "allergeni": "pippo e pluto"}
+
+
+###
+// MODIFICA CATEGORIA
+###
+PATCH http://localhost:8080/controller/menu/update/categoria
+Content-Type: application/json
+
+{"nome": "LaClassica", "categoria": "Pizze"}
+
+
+###
+// MODIFICA POSTO CATEGORIA
+###
+PATCH http://localhost:8080/controller/menu/update/postoCategoria
+Content-Type: application/json
+
+{"nome": "LaClassica", "postoCategoria": "1"}
+
+
+###
+// ELIMINA ELEMENTO MENU
+###
+DELETE http://localhost:8080/controller/menu/delete/elementoMenu
+Content-Type: application/json
+
+{"nome": "Diavola"}
+
+
+###
+// ELIMINA TUTTI GLI ELEMENTI DEL MENU
+###
+DELETE http://localhost:8080/controller/menu/delete/tuttoMenu
+
