@@ -8,6 +8,7 @@ CheckPoint:
   -  [Statechart di ANALISI](https://github.com/speacock17/ingsw/tree/main/STATECHART)
   -  [Database](https://github.com/speacock17/ingsw/blob/main/IngswDB.txt)
   -  [Server Java](https://github.com/speacock17/ingsw/blob/main/server_240523.zip)
+  -  [Richieste al server](https://github.com/speacock17/ingsw/tree/main/richieste_server)
   -  [Documentazione Testing Server](https://github.com/speacock17/ingsw/blob/main/Documentazione_strategie_test.txt)
 
 Ultima versione del server:   server_230623
