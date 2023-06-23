@@ -10,13 +10,27 @@ CheckPoint:
   -  [Server Java](https://github.com/speacock17/ingsw/blob/main/server_240523.zip)
   -  [Documentazione Testing Server](https://github.com/speacock17/ingsw/blob/main/Documentazione_strategie_test.txt)
 
-Ultima versione del server:   server_240523
+Ultima versione del server:   server_230623
   - test jUnit di 4 metodi
   - pattern DAO per la persistenza dei dati
   - openFoodData service implementato
+  - autenticazione implementata
 
-Server JAR:
-- Google Drive link: https://drive.google.com/file/d/15Q-Rx2-WX-UGKUtWzurcbDhFLa7FlMvf/view?usp=sharing
-- MediaFire link: https://www.mediafire.com/file/osmfz56r9kgz7x5/server_240523.jar/file
+Come si avvia il server:
+  - bisogna accedere ad AWS con email e password
+  - bisogna accedere alla console EC2 e selezionare l'unica istanza disponibile
+  - tra le operazione possibili su 'stato dell'istanza' bisogna premere "Avvia"
+  - sempre selezionando l'istanza, compare in basso l'indirizzo DNS ipv4 pubblico da copiare per l'operazione successiva
+  - (qui si trova anche l'indirizzo ipv4 pubblico necessario per le richieste http al server)
+
+  - bisogna accedere alla propria shell e spostarsi nella directory dove si trova la chiave .pem
+  - a questo punto scrivere il comando "ssh -i nomeChiave.pem Ubuntu@DNSipv4pubblico"
+  - una volta entrati nella shell della macchina virtuale AWS bisogna andare nella cartella '/home/ubuntu/ingsw'
+  - qui eseguire il comando 'java -jar server_230623.jar'
+
+Come funziona il server:
+  - bisogna inviare una richiesta "http://indirizzoIPv4pubblico:8080/auth" con due parametri nel body (in formato JSON): "login" e "password"
+  - si riceve un access token che deve essere inserito nell'header di ogni richiesta successiva
+  - per inserire il token si mette nell'Header il campo "Authorization" con valore "Bearer valoreToken"
 
 
