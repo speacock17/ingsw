@@ -17,7 +17,7 @@ senza dover ricorrere, quindi, all'implementazione di un pattern Factory;
 
 Ciascun controller viene introdotto dall'annotazione @RestController, che permette di mapparne i metodi per ricevere richieste HTTP;
 
-Le entità vengono istanziae automaticamente da Spring nelle richieste ricevute dal client, attraverso l'annotazione @RequestBody;
+Le entità vengono istanziate automaticamente da Spring nelle richieste ricevute dal client, attraverso l'annotazione @RequestBody;
 Ciascun @RequestBody è legato ad un corrispondente DTO (Data Transfer Object), che modella le entità interamente o parzialmente.
 
 ---- OPEN FOOD DATA SERVICE ----
