@@ -1,0 +1,21 @@
+Tecnologie usate per il server:
+	> Java
+	> Framework SpringBoot, per la ricezione e la gestione delle richieste HTTP e per l'inoltro delle relative risposte HTTP 
+	> Json Web Token (JWT) per l'autenticazione
+	> Modulo 'jdbc' per la connessione al database
+	> PostgreSQL per il database
+	> Modulo 'junit' per la creazione di batterie di test
+
+Il server è stato progettato con il pattern DAO;
+
+Dependency Injection AUTOMATICA tramite annotazioni SpringBoot quali: @Repository, @Component, @Service e @Autowired;
+
+Le interfacce Dao, per ridurre l'accoppiamento, presentano signature dei metodi slegati dagli oggetti che modellano le entità individuate;
+
+Attraverso la dependency Injection, SpringBoot individua in modo automatico la corretta implementazione dell'interfaccia DAO, 
+senza dover ricorrere, quindi, all'implementazione di un pattern Factory;
+
+Ciascun controller viene introdotto dall'annotazione @RestController, che permette di mapparne i metodi per ricevere richieste HTTP;
+
+Le entità vengono istanziae automaticamente da Spring nelle richieste ricevute dal client, attraverso l'annotazione @RequestBody;
+Ciascun @RequestBody è legato ad un corrispondente DTO (Data Transfer Object), che modella le entità interamente o parzialmente.
