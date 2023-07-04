@@ -21,4 +21,6 @@ Le entità vengono istanziae automaticamente da Spring nelle richieste ricevute 
 Ciascun @RequestBody è legato ad un corrispondente DTO (Data Transfer Object), che modella le entità interamente o parzialmente.
 
 ---- OPEN FOOD DATA SERVICE ----
-La comunicazione con il servizio offerto dal sito Open Food Facts è stata implementata attraverso protocollo HTTP con richieste composte sulla base del codice a barre del prodotto di cui estrapolare informazioni, che vengono inviate presso l'indirizzo dell'api messo a disposizione dal sito 'world.openfoodfacts.org'
+La comunicazione con il servizio offerto dal sito Open Food Facts è stata implementata attraverso protocollo HTTP
+con richieste composte sulla base del codice a barre del prodotto di cui estrapolare informazioni, 
+che vengono inviate presso l'indirizzo dell'api messo a disposizione dal sito 'world.openfoodfacts.org'
