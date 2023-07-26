@@ -36,7 +36,7 @@ GET http://localhost:8080/controller/linguaStraniera/recupera/tuttaLinguaStranie
 ###
 // RECUPERA ELEMENTO IN LINGUA STRANIERA
 ###
-GET http://localhost:8080/controller/linguaStraniera/recupera/elemento
+POST http://localhost:8080/controller/linguaStraniera/recupera/elemento
 Content-Type: application/json
 
 {"elementoMenu": "Margherita"}
