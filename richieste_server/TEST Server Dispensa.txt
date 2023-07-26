@@ -20,7 +20,7 @@ Content-Type: application/json
 ###
 // RECUPERA OLIO EXTRAVERGINE D'OLIVA
 ###
-GET http://localhost:8080/controller/dispensa/recupera/elemDispensa
+POST http://localhost:8080/controller/dispensa/recupera/elemDispensa
 Content-Type: application/json
 
 {"nome": "Olio Extravergine d'Oliva"}
