@@ -28,7 +28,7 @@ GET http://localhost:8080/controller/categoria/recupera/tutteCategorie
 ###
 // RECUPERA CATEGORIA 'SECONDI'
 ###
-GET http://localhost:8080/controller/categoria/recupera/categoria
+POST http://localhost:8080/controller/categoria/recupera/categoria
 Content-Type: application/json
 
 {"nome": "Secondi"}
@@ -37,7 +37,7 @@ Content-Type: application/json
 ###
 // FALLISCI RECUPERO CATEGORIA
 ###
-GET http://localhost:8080/controller/categoria/recupera/categoria
+POST http://localhost:8080/controller/categoria/recupera/categoria
 Content-Type: application/json
 
 {"nome": "Dessert"}
