@@ -40,7 +40,7 @@ Content-Type: application/json
 ###
 // RECUPERA LA MARGHERITA
 ###
-GET http://localhost:8080/controller/menu/recupera/elemMenu
+POST http://localhost:8080/controller/menu/recupera/elemMenu
 Content-Type: application/json
 
 {"nome": "Margherita"}
@@ -55,7 +55,7 @@ GET http://localhost:8080/controller/menu/recupera/tuttoMenu
 ###
 // RECUPERA LA CATEGORIA PIZZE
 ###
-GET http://localhost:8080/controller/menu/recupera/menuByCategoria
+POST http://localhost:8080/controller/menu/recupera/menuByCategoria
 Content-Type: application/json
 
 {"categoria": "Pizze"}
