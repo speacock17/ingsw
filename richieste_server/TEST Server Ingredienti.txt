@@ -44,7 +44,7 @@ Content-Type: application/json
 
 ###
 // RECUPERA INGREDIENTE
-GET http://localhost:8080/controller/ingredienti/recupera/ingrediente
+POST http://localhost:8080/controller/ingredienti/recupera/ingrediente
 Content-Type: application/json
 
 {
@@ -56,7 +56,7 @@ Content-Type: application/json
 ###
 // RECUPERA INGREDIENTI DI UN ELEMENTO DEL MENU
 ###
-GET http://localhost:8080/controller/ingredienti/recupera/ingredientiByElementoMenu
+POST http://localhost:8080/controller/ingredienti/recupera/ingredientiByElementoMenu
 Content-Type: application/json
 
 {
