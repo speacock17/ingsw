@@ -7,12 +7,12 @@ CheckPoint:
   -  [Sequence Diagram di ANALISI](https://github.com/speacock17/ingsw/tree/main/SEQUENCE_DIAGRAM_ANALISI)
   -  [Statechart di ANALISI](https://github.com/speacock17/ingsw/tree/main/STATECHART)
   -  [Database](https://github.com/speacock17/ingsw/blob/main/IngswDB.txt)
-  -  [Codice Server Java](https://github.com/speacock17/ingsw/blob/main/server_280723.zip)
-  -  [File JAR Server](https://github.com/speacock17/ingsw/blob/main/server_280723.jar)
+  -  [Codice Server Java](https://github.com/speacock17/ingsw/blob/main/server_010823.zip)
+  -  [File JAR Server](https://github.com/speacock17/ingsw/blob/main/server_010823.jar)
   -  [Richieste al server](https://github.com/speacock17/ingsw/tree/main/richieste_server)
   -  [Documentazione Testing Server](https://github.com/speacock17/ingsw/blob/main/Documentazione_strategie_test.txt)
 
-Ultima versione del server:   server_280723
+Ultima versione del server:   server_010823
   - test jUnit di 4 metodi
   - pattern DAO per la persistenza dei dati
   - openFoodData service implementato
@@ -27,7 +27,7 @@ Come si avvia il server:
   - bisogna accedere al proprio terminale e spostarsi nella directory dove si trova la chiave .pem
   - a questo punto scrivere il comando "ssh -i nomeChiave.pem Ubuntu@DNSipv4pubblico"
   - una volta entrati nella shell della macchina virtuale AWS bisogna andare nella cartella '/home/ubuntu/ingsw'
-  - qui eseguire il comando 'java -jar server_280723.jar'
+  - qui eseguire il comando 'java -jar server_010823.jar'
 
 Come funziona il server:
   - bisogna inviare una richiesta "http://indirizzoIPv4pubblico:8080/auth" con due parametri nel body (in formato JSON): "login" e "password"
